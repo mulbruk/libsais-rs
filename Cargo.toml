@@ -26,12 +26,20 @@ include = [
     "/libsais/src/**",
 ]
 
+[features]
+default = []
+bench-vs-c = ["dep:cc"]
+
 [lib]
 name = "libsais_rs"
 path = "src/lib.rs"
 
 [build-dependencies]
-cc = "1"
+cc = { version = "1", optional = true }
+
+[[example]]
+name = "bench_vs_c"
+required-features = ["bench-vs-c"]
 
 [profile.release]
 codegen-units = 1
